@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://ya4di8snnfg1"]
+
+[ext_resource type="Script" path="res://scenes/joc/joc.gd" id="1_sgd5x"]
+[ext_resource type="Texture2D" uid="uid://cnmco05ketrpt" path="res://assets/tapete.png" id="1_vt20p"]
+
+[node name="Joc" type="Node2D"]
+script = ExtResource("1_sgd5x")
+metadata/_edit_vertical_guides_ = [239.0]
+
+[node name="tapete" type="Sprite2D" parent="."]
+texture = ExtResource("1_vt20p")
+centered = false
+
+[node name="barallar" type="Button" parent="."]
+offset_left = 204.0
+offset_top = 814.0
+offset_right = 278.0
+offset_bottom = 845.0
+text = "Barallar!"
+
+[node name="collir" type="Button" parent="."]
+offset_left = 311.0
+offset_top = 814.0
+offset_right = 360.0
+offset_bottom = 845.0
+text = "Collir"
+
+[connection signal="pressed" from="barallar" to="." method="_on_barallar_pressed"]
+[connection signal="pressed" from="collir" to="." method="_on_collir_pressed"]

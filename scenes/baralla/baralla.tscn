@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://28v1hx3qbq6h"]
+
+[ext_resource type="Script" path="res://scenes/baralla/baralla.gd" id="1_ac0ly"]
+
+[node name="baralla" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ac0ly")

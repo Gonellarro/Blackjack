@@ -1,0 +1,98 @@
+[gd_scene load_steps=5 format=3 uid="uid://ya4di8snnfg1"]
+
+[ext_resource type="Script" path="res://scenes/joc/joc.gd" id="1_sgd5x"]
+[ext_resource type="Texture2D" uid="uid://cnmco05ketrpt" path="res://assets/tapete.png" id="1_vt20p"]
+[ext_resource type="Texture2D" uid="uid://dwietxrybyby0" path="res://assets/guanyes.png" id="3_cjl2f"]
+[ext_resource type="Texture2D" uid="uid://87qtvwrdep8w" path="res://assets/perds.png" id="4_75js4"]
+
+[node name="Joc" type="Node2D"]
+script = ExtResource("1_sgd5x")
+metadata/_edit_vertical_guides_ = [239.0]
+
+[node name="tapete" type="Sprite2D" parent="."]
+texture = ExtResource("1_vt20p")
+centered = false
+
+[node name="guanyes" type="TextureRect" parent="."]
+top_level = true
+offset_left = 110.0
+offset_top = 329.0
+offset_right = 174.0
+offset_bottom = 369.0
+scale = Vector2(4, 4)
+texture = ExtResource("3_cjl2f")
+
+[node name="perds" type="TextureRect" parent="."]
+top_level = true
+offset_left = 110.0
+offset_top = 329.0
+offset_right = 174.0
+offset_bottom = 369.0
+scale = Vector2(4, 4)
+texture = ExtResource("4_75js4")
+
+[node name="barallar" type="Button" parent="."]
+visible = false
+offset_left = 204.0
+offset_top = 814.0
+offset_right = 278.0
+offset_bottom = 845.0
+text = "Barallar!"
+
+[node name="collir" type="Button" parent="."]
+offset_left = 150.0
+offset_top = 810.0
+offset_right = 199.0
+offset_bottom = 841.0
+text = "Collir"
+
+[node name="passar" type="Button" parent="."]
+offset_left = 290.0
+offset_top = 810.0
+offset_right = 349.0
+offset_bottom = 841.0
+text = "Passar"
+
+[node name="doblar" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="nouJoc" type="Button" parent="."]
+offset_left = 387.0
+offset_top = 22.0
+offset_right = 455.0
+offset_bottom = 53.0
+text = "Nou Joc"
+
+[node name="scoreJugador" type="Label" parent="."]
+offset_left = 334.0
+offset_top = 67.0
+offset_right = 460.0
+offset_bottom = 90.0
+text = "Punts Jugador: 0"
+
+[node name="scoreOrdinador" type="Label" parent="."]
+offset_left = 314.0
+offset_top = 93.0
+offset_right = 461.0
+offset_bottom = 116.0
+text = "Punts Ordinador: 0"
+
+[node name="credit" type="Label" parent="."]
+offset_left = 397.0
+offset_top = 147.0
+offset_right = 462.0
+offset_bottom = 170.0
+text = "Crèdit: 5"
+
+[node name="aposta" type="Label" parent="."]
+offset_left = 372.0
+offset_top = 172.0
+offset_right = 463.0
+offset_bottom = 195.0
+text = "Aposta: 2 cr"
+
+[connection signal="pressed" from="barallar" to="." method="_on_barallar_pressed"]
+[connection signal="pressed" from="collir" to="." method="_on_collir_pressed"]
+[connection signal="pressed" from="passar" to="." method="_on_passar_pressed"]
+[connection signal="pressed" from="nouJoc" to="." method="_on_nou_joc_pressed"]
