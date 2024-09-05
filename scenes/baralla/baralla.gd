@@ -9,15 +9,17 @@ var valors = ["2","3","4","5","6","7","8","9","10","J","Q","K","ACE"]
 var pals = ["Clubs","Diamonds","Hearts","Spades"]
 
 func _init() -> void:
+	pass
+	print("Se crea la baralla")
+
+func _ready() -> void:
 	var carta: Carta
 	for p in range(NUM_PALS):
 		for c in range(NUM_CARTES):
 			carta = Carta.new(valors[c],pals[p])
-			cartes.push_back(carta)
-			
-func _ready() -> void:
-	mostrar()
-	#pass
+			cartes.push_back(carta)	
+	# Escapçam les cartes
+	cartes.shuffle()
 	
 func barallar() -> void:
 	print("Barallam")
@@ -26,7 +28,6 @@ func barallar() -> void:
 func borrar() -> void:
 	for i in range(cartes.size()):
 		var carta = cartes[i]
-		remove_child(carta)  # Eliminam la carta de l'escena 
 		carta.free()	# Eliminam la carta com a objecte
 	
 	cartes = []
@@ -35,11 +36,6 @@ func mostrar() -> void:
 	for i in range(cartes.size()):
 		var carta = cartes[i]
 		add_child(carta)  # Agregar la carta a la escena como un nodo hijo
-
-	# Cream una carta per a què tapi les altres
-	#var cartaCover: Carta = Carta.new("ACE","Clubs")
-	#cartaCover.set_imatge("res://assets/KINCards/Back_1.png")
-	#add_child(cartaCover)
 		
 func collir() -> Carta:
 	var cartaTMP: Carta = cartes.pop_front()
