@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://cepw4v0h1jx2u"]
+
+[ext_resource type="Script" path="res://scenes/pantalles/menu.gd" id="1_gug35"]
+[ext_resource type="Texture2D" uid="uid://duyvx3jy4vbus" path="res://assets/fonsInici.png" id="2_bqlug"]
+[ext_resource type="Theme" uid="uid://cyhuytd5kxh4y" path="res://tema8bits.tres" id="3_ft5ck"]
+[ext_resource type="AudioStream" uid="uid://da1jy70pfbu5n" path="res://assets/TheEntertainer.mp3" id="4_4vwn0"]
+
+[node name="menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gug35")
+metadata/_edit_vertical_guides_ = [240.0]
+
+[node name="Fons" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 479.0
+offset_bottom = 853.0
+texture = ExtResource("2_bqlug")
+expand_mode = 1
+
+[node name="Iniciar" type="Button" parent="."]
+layout_mode = 0
+offset_left = 121.0
+offset_top = 213.0
+offset_right = 241.0
+offset_bottom = 237.0
+scale = Vector2(2, 2)
+theme = ExtResource("3_ft5ck")
+text = "Iniciar"
+
+[node name="Configurar" type="Button" parent="."]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 294.0
+offset_right = 241.0
+offset_bottom = 325.0
+scale = Vector2(2, 2)
+theme = ExtResource("3_ft5ck")
+text = "Configurar"
+
+[node name="MusicaFons" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_4vwn0")
+
+[connection signal="pressed" from="Iniciar" to="." method="_on_iniciar_pressed"]
+[connection signal="pressed" from="Configurar" to="." method="_on_configurar_pressed"]

@@ -1,0 +1,135 @@
+[gd_scene load_steps=4 format=3 uid="uid://dwspjfk3jh2t8"]
+
+[ext_resource type="Texture2D" uid="uid://duyvx3jy4vbus" path="res://assets/fonsInici.png" id="1_kcc66"]
+[ext_resource type="Script" path="res://scenes/pantalles/configuracio.gd" id="1_vwccv"]
+[ext_resource type="Theme" uid="uid://cyhuytd5kxh4y" path="res://tema8bits.tres" id="3_4mxab"]
+
+[node name="Configuracio" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vwccv")
+metadata/_edit_vertical_guides_ = [241.0]
+
+[node name="Fons" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 479.0
+offset_bottom = 853.0
+texture = ExtResource("1_kcc66")
+expand_mode = 1
+
+[node name="Tornar" type="Button" parent="."]
+layout_mode = 0
+offset_left = 139.0
+offset_top = 599.0
+offset_right = 243.0
+offset_bottom = 623.0
+scale = Vector2(2, 2)
+theme = ExtResource("3_4mxab")
+text = "Tornar"
+
+[node name="Baralles" type="Label" parent="."]
+layout_mode = 0
+offset_left = 115.0
+offset_top = 108.0
+offset_right = 243.0
+offset_bottom = 131.0
+scale = Vector2(2, 2)
+theme = ExtResource("3_4mxab")
+text = "Baralles"
+horizontal_alignment = 1
+
+[node name="Credits" type="Label" parent="."]
+layout_mode = 0
+offset_left = 111.0
+offset_top = 260.0
+offset_right = 239.0
+offset_bottom = 283.0
+scale = Vector2(2, 2)
+theme = ExtResource("3_4mxab")
+text = "Credits"
+horizontal_alignment = 1
+
+[node name="B1" type="Button" parent="."]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 172.0
+offset_right = 146.0
+offset_bottom = 203.0
+scale = Vector2(2, 2)
+theme = ExtResource("3_4mxab")
+text = "1"
+
+[node name="B2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 188.0
+offset_top = 172.0
+offset_right = 212.0
+offset_bottom = 203.0
+scale = Vector2(2, 2)
+theme = ExtResource("3_4mxab")
+text = "2"
+
+[node name="B3" type="Button" parent="."]
+layout_mode = 0
+offset_left = 257.0
+offset_top = 172.0
+offset_right = 281.0
+offset_bottom = 203.0
+scale = Vector2(2, 2)
+theme = ExtResource("3_4mxab")
+text = "3"
+
+[node name="B4" type="Button" parent="."]
+layout_mode = 0
+offset_left = 323.0
+offset_top = 172.0
+offset_right = 347.0
+offset_bottom = 203.0
+scale = Vector2(2, 2)
+theme = ExtResource("3_4mxab")
+text = "4"
+
+[node name="C10" type="Button" parent="."]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 331.0
+offset_right = 145.0
+offset_bottom = 355.0
+scale = Vector2(2, 2)
+theme = ExtResource("3_4mxab")
+text = "10"
+
+[node name="C20" type="Button" parent="."]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 331.0
+offset_right = 240.0
+offset_bottom = 355.0
+scale = Vector2(2, 2)
+theme = ExtResource("3_4mxab")
+text = "20
+"
+
+[node name="C30" type="Button" parent="."]
+layout_mode = 0
+offset_left = 305.0
+offset_top = 331.0
+offset_right = 345.0
+offset_bottom = 355.0
+scale = Vector2(2, 2)
+theme = ExtResource("3_4mxab")
+text = "30
+"
+
+[connection signal="pressed" from="Tornar" to="." method="_on_tornar_pressed"]
+[connection signal="pressed" from="B1" to="." method="_on_b_1_pressed"]
+[connection signal="pressed" from="B2" to="." method="_on_b_2_pressed"]
+[connection signal="pressed" from="B3" to="." method="_on_b_3_pressed"]
+[connection signal="pressed" from="B4" to="." method="_on_b_4_pressed"]
+[connection signal="pressed" from="C10" to="." method="_on_c_10_pressed"]
+[connection signal="pressed" from="C20" to="." method="_on_c_20_pressed"]
+[connection signal="pressed" from="C30" to="." method="_on_c_30_pressed"]

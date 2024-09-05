@@ -7,20 +7,21 @@ const NUM_CARTES = 13
 const NUM_PALS = 4
 var valors = ["2","3","4","5","6","7","8","9","10","J","Q","K","ACE"]
 var pals = ["Clubs","Diamonds","Hearts","Spades"]
+var numBaralles: int = 1
 
-func _init() -> void:
-	pass
-	print("Se crea la baralla")
+func _init(n: int) -> void:
+	numBaralles = n
 
 func _ready() -> void:
 	var carta: Carta
-	for p in range(NUM_PALS):
-		for c in range(NUM_CARTES):
-			carta = Carta.new(valors[c],pals[p])
-			cartes.push_back(carta)	
+	for n in (numBaralles):
+			for p in range(NUM_PALS):
+				for c in range(NUM_CARTES):
+					carta = Carta.new(valors[c],pals[p])
+					cartes.push_back(carta)	
 	# Escapçam les cartes
 	cartes.shuffle()
-	
+
 func barallar() -> void:
 	print("Barallam")
 	cartes.shuffle()
@@ -45,6 +46,9 @@ func get_numCartes() -> int:
 	return cartes.size()
 	
 func afegirCartes(cartesArray: Array) -> void:
+	cartes.append_array(cartesArray)
+	
+func renovarCartes(cartesArray: Array) -> void:
 	cartes.clear()
 	cartes.append_array(cartesArray)
 	

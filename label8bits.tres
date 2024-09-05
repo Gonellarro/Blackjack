@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://uevv2738xj4l"]
+
+[ext_resource type="FontFile" uid="uid://b3u2wiivcs1qu" path="res://assets/PressStart2P-vaV7.ttf" id="1_ibxha"]
+
+[resource]
+default_font = ExtResource("1_ibxha")
+Label/colors/font_color = Color(0, 0.87451, 0.0980392, 1)
+Label/colors/font_shadow_color = Color(0, 0.137255, 0.0980392, 1)

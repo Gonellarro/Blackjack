@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://buk5as8bbqg2r"]
+
+[ext_resource type="Script" path="res://scenes/pantalles/game_over.gd" id="1_au1ik"]
+[ext_resource type="Texture2D" uid="uid://by1yifnysyy8x" path="res://assets/fonsGameOver.png" id="1_e0j7p"]
+[ext_resource type="Theme" uid="uid://cyhuytd5kxh4y" path="res://tema8bits.tres" id="3_3fv20"]
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_au1ik")
+metadata/_edit_vertical_guides_ = [241.0]
+
+[node name="Fons" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 479.0
+offset_bottom = 853.0
+texture = ExtResource("1_e0j7p")
+expand_mode = 1
+
+[node name="Reiniciar" type="Button" parent="."]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 303.0
+offset_right = 242.0
+offset_bottom = 327.0
+scale = Vector2(2, 2)
+theme = ExtResource("3_3fv20")
+text = "Reiniciar
+"
+
+[node name="Menu" type="Button" parent="."]
+layout_mode = 0
+offset_left = 171.0
+offset_top = 366.0
+offset_right = 243.0
+offset_bottom = 397.0
+scale = Vector2(2, 2)
+theme = ExtResource("3_3fv20")
+text = "Menu"
+
+[connection signal="pressed" from="Reiniciar" to="." method="_on_reiniciar_pressed"]
+[connection signal="pressed" from="Menu" to="." method="_on_menu_pressed"]

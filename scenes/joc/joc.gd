@@ -1,6 +1,7 @@
 extends Node2D
 
 var baralla: Baralla
+var numBaralles: int = 1
 var maJugador : Array = []
 var maOrdinador: Array = []
 var maDescarts: Array = []
@@ -36,21 +37,27 @@ func inicialitzarVariables() -> void:
 	$nouJoc.disabled = true
 	$nouJoc.visible = false
 	$nouJoc.text = ""
-	$guanyes.visible = false
-	$perds.visible = false
-	numCartes = 52
+	
+	$escapsa.disabled = true
+	$escapsa.visible = false
+	$escapsa.text = "Escapça!"
+	
+	numBaralles = Global.numBaralles
+	credits = Global.credits
+		
+	numCartes = numBaralles * 52
 	trasera = "Back_1.png"
 	
 	# També inicialitzam els textes
-	$credit.text = "Crèdit: " + str(credits) + "€"
-	$scoreJugador.text = "Punts Jugador: " + str(scoreJugador)
-	$scoreOrdinador.text =  "Punts Ordinador: " + str(scoreOrdinador)
-	$ncartes.text = "Cartes restants: " + str(numCartes)
+	$credit.text = str(credits)
+	$scoreJugador.text = "Jugador: " + str(scoreJugador)
+	$scoreOrdinador.text =  "Ordinador: " + str(scoreOrdinador)
+	$ncartes.text = "Cartes: " + str(numCartes)
 	
 	# Finalment assignam la imagte de la trassera a la carta de l'ordinador
 	# La posam a l'escena, però la deixam oculta fins a que s'hagi de menester
-	cartaCover.set_imatge("res://assets/KINCards/" + trasera)
-	cartaCoverBaralla.set_imatge("res://assets/KINCards/" + trasera)
+	cartaCover.set_imatge("res://assets/Cards/" + trasera)
+	cartaCoverBaralla.set_imatge("res://assets/Cards/" + trasera)
 	cartaCover.position = Vector2(100,300)
 	cartaCoverBaralla.position = Vector2(200, 80)
 	cartaCover.visible = false
@@ -66,6 +73,9 @@ func _ready() -> void:
 	inicialitzarVariables()
 	# Instanciar la baralla y afegir-la a l'escena
 	creaBaralla()
+	
+	print("Baralles: " + str(numBaralles))
+	print("Credits: " + str(credits))
 	
 	
 func _process(_delta) -> void:
@@ -99,20 +109,26 @@ func _process(_delta) -> void:
 			
 			if scoreOrdinador > 21:
 				# Guanya el jugador
-				icona = "res://assets/guanyes.png"
+				#icona = "res://assets/guanyes.png"
+				$nouJoc.text = "Guanyes!"
 				credits += aposta
 			elif (scoreJugador > scoreOrdinador) and scoreJugador < 22:
-				# Guanya el jugador				
-				icona = "res://assets/guanyes.png"
+				# Guanya el jugador
+				$nouJoc.text = "Guanyes!"
+				#icona = "res://assets/guanyes.png"
 				credits += aposta
 			else:
 				# Guanya l'ordinador
-				icona = "res://assets/perds.png"
+				$nouJoc.text = "Perds..."
+				#icona = "res://assets/perds.png"
 				credits -= aposta
+				if credits < 1:
+					get_tree().change_scene_to_file("res://scenes/pantalles/game_over.tscn")
+					
 			
-			$scoreOrdinador.text = "Punts Ordinador: " + str(scoreOrdinador)
+			$scoreOrdinador.text = "Ordinador: " + str(scoreOrdinador)
 			
-			$credit.text = "Crèdit: " + str(credits) + "€"			
+			$credit.text = str(credits)
 			$nouJoc.disabled = false
 			$nouJoc.visible = true
 			$nouJoc.icon = load(icona)
@@ -134,7 +150,6 @@ func tornOrdinador() -> void:
 func tapaCartaOrdinador() -> void:
 		# Cream una carta per a què tapi les altres de la ma de l'ordinador
 	add_child(cartaCover)
-	#cartaCover.position = Vector2(100,300)
 	cartaCover.visible = true
 
 func eliminarCoverOrdinador() -> void:
@@ -146,31 +161,19 @@ func eliminarCoverOrdinador() -> void:
 #############################################################
 
 func creaBaralla() -> void:
-	#baralla = baralla_scene.instantiate()
-	baralla = Baralla.new()	
-	# Escapçam totes les cartes
-	baralla.barallar()
+	var cartes: Array = []
+	baralla = Baralla.new(numBaralles)	
 	# Mostram la baralla
 	add_child(baralla)
 	# Posam la carta per cobrir la baralla
 	cartaCoverBaralla.visible = true
-
-#func borrarBaralla() -> void:
-	#remove_child(baralla)
-	
-#func mostrarCoverBaralla() -> void:
-	#cartaCoverBaralla.visible = true
-
-#func eliminarCoverBaralla() -> void:
-	##remove_child(cartaCoverBaralla)
-	#cartaCoverBaralla.visible = false
 
 func referBaralla() -> void:
 		
 		# Guardam quantes cartes hi ha als descarts
 		numCartes = maDescarts.size()
 		#Cream la baralla amb les cartes descartades
-		baralla.afegirCartes(maDescarts)
+		baralla.renovarCartes(maDescarts)
 		# Escapçam totes les cartes
 		baralla.barallar()
 		#Feim visibles totes les cartes
@@ -183,9 +186,10 @@ func referBaralla() -> void:
 		#Netejam les cartes descartades
 		maDescarts.clear()
 		
-		#Afegim la cover de la baralla
-		await get_tree().create_timer(1.0).timeout
 		cartaCoverBaralla.visible = true
+		
+		# Mostram el missatge que ja hem escapçat un altre pic
+		
 
 
 #############################################################
@@ -209,7 +213,7 @@ func collirCartaJugador() -> void:
 	var pes: int = pesos[num]
 	
 	scoreJugador += pes
-	$scoreJugador.text = "Punts Jugador: " + str(scoreJugador)
+	$scoreJugador.text = "Jugador: " + str(scoreJugador)
 	
 	numCartes -= 1
 	
@@ -337,15 +341,15 @@ func _on_nou_joc_pressed():
 	scoreJugador = 0
 	scoreOrdinador = 0
 	aposta = 2
-	$scoreJugador.text = "Punts Jugador: " + str(scoreJugador)
-	$scoreOrdinador.text =  "Punts Ordinador: " + str(scoreOrdinador)
+	$scoreJugador.text = "Jugador: " + str(scoreJugador)
+	$scoreOrdinador.text =  "Ordinador: " + str(scoreOrdinador)
 	$aposta.text = "Aposta: " + str(aposta) + "€"
-	$ncartes.text = "Cartes restants: " + str(numCartes)
+	$ncartes.text = "Cartes:" + str(numCartes)
 	
 	#Guardam totes les cartes jugades
 	maDescarts.append_array(maJugador)
 	maDescarts.append_array(maOrdinador)
-		
+	
 	borrarCartes()
 	
 	maJugador = []

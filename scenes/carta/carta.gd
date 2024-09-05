@@ -10,7 +10,7 @@ var escala: Vector2
 func _init(n: String, p: String) -> void:
 	numero = n
 	pal = p
-	imatge = load("res://assets/KINCards/" + p + "_" + numero + ".png")
+	imatge = load("res://assets/Cards/" + p + "_" + numero + ".png")
 	escala = Vector2 (2.5,2.5)
 	
 func _ready() -> void:
