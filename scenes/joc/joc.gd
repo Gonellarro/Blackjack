@@ -3,28 +3,29 @@ extends Node2D
 @onready var musica_fons = $MusicaFons
 
 var baralla: Baralla
-var numBaralles: int = 1
+var numBaralles: int
 var maJugador : Array = []
 var maOrdinador: Array = []
 var maDescarts: Array = []
 
-var scoreJugador: int = 0
-var scoreOrdinador: int = 0
+var scoreJugador: int
+var scoreOrdinador: int
 
 var posicioJugador = Vector2(100,600)
 var posicioOrdinador = Vector2(100, 300)
 
-var valors = ["2","3","4","5","6","7","8","9","10","J","Q","K","ACE"]
-var pesos = [2,3,4,5,6,7,8,9,10,10,10,10,11]
+var valors = ["2","3","4","5","6","7","8","9","10","J","Q","K","ACE","ASE"]
+var pesos = [2,3,4,5,6,7,8,9,10,10,10,10,11,1]
 
 var fiPartida: bool = false
 var fiJugador: bool = false
+var jugades: int
 
 # Valor inicial dels diners del jugador
-var credits: int = 20
+var credits: int
 
 # Valor de l'aposta del jugador
-var aposta: int = 2
+var aposta: int
 
 var fiDiners: bool = false
 
@@ -45,17 +46,18 @@ func inicialitzarVariables() -> void:
 	$escapsa.text = "Escapça!"
 	
 	numBaralles = Global.numBaralles
+	credits = Global.creditsInicials
+	Global.credits = credits
+	scoreJugador = Global.scoreJugador
+	scoreOrdinador = Global.scoreOrdinador
 	credits = Global.credits
+	aposta = Global.aposta
+	jugades = Global.jugades
 		
 	numCartes = numBaralles * 52
+	Global.numCartes = numCartes
 	trasera = "Back_1.png"
-	
-	# També inicialitzam els textes
-	$credit.text = str(credits)
-	$scoreJugador.text = "Jugador: " + str(scoreJugador)
-	$scoreOrdinador.text =  "Ordinador: " + str(scoreOrdinador)
-	$ncartes.text = "Cartes: " + str(numCartes)
-	
+
 	# Finalment assignam la imagte de la trassera a la carta de l'ordinador
 	# La posam a l'escena, però la deixam oculta fins a que s'hagi de menester
 	cartaCover.set_imatge("res://assets/Cards/" + trasera)
@@ -88,6 +90,10 @@ func _process(_delta) -> void:
 	#   3. Te plantes
 		
 	#Si s'han repartit al menys 3 cartes o el jugador se planta, revisam qui ha guanyat i qui no
+	if scoreJugador == 21:
+		fiPartida = true
+		fiJugador = true
+	
 	if fiJugador:
 		
 		#Llevam el cover de l'ordinador
@@ -104,33 +110,38 @@ func _process(_delta) -> void:
 			tornOrdinador()
 		
 		if fiPartida:
-			var icona: String
+			#var icona: String
 			
-			if scoreOrdinador > 21:
+			if scoreJugador == 21: 
+				$nouJoc.text = "BlackJack!"
+				credits += aposta				
+			elif scoreOrdinador > 21:
 				# Guanya el jugador
-				#icona = "res://assets/guanyes.png"
 				$nouJoc.text = "Guanyes!"
 				credits += aposta
+			elif (scoreJugador == scoreOrdinador) and scoreJugador < 22:
+				# Empats. Se tornen els dobers de l'aposta, per tant no feim res
+				$nouJoc.text = "Empats"
 			elif (scoreJugador > scoreOrdinador) and scoreJugador < 22:
 				# Guanya el jugador
 				$nouJoc.text = "Guanyes!"
-				#icona = "res://assets/guanyes.png"
 				credits += aposta
 			else:
 				# Guanya l'ordinador
 				$nouJoc.text = "Perds..."
-				#icona = "res://assets/perds.png"
 				credits -= aposta
 				if credits < 1:
 					get_tree().change_scene_to_file("res://scenes/pantalles/game_over.tscn")
 					
+			Global.scoreJugador = scoreJugador
+			Global.scoreOrdinador = scoreOrdinador
+			#$scoreOrdinador.text = "Ordinador: " + str(scoreOrdinador)
 			
-			$scoreOrdinador.text = "Ordinador: " + str(scoreOrdinador)
-			
-			$credit.text = str(credits)
+			Global.credits = credits
+			#$credit.text = str(credits)
+
 			$nouJoc.disabled = false
 			$nouJoc.visible = true
-			$nouJoc.icon = load(icona)
 			set_process(false)
 
 func tornOrdinador() -> void:
@@ -168,7 +179,12 @@ func creaBaralla() -> void:
 	cartaCoverBaralla.visible = true
 
 func referBaralla() -> void:
-		
+		$escapsa.visible = true
+		$escapsa.disabled = false
+		$collir.disabled = true
+		$passar.disabled = true
+		$doblar.disabled = true
+		set_process(false)
 		# Guardam quantes cartes hi ha als descarts
 		numCartes = maDescarts.size()
 		#Cream la baralla amb les cartes descartades
@@ -189,12 +205,9 @@ func referBaralla() -> void:
 		
 		# Mostram el missatge que ja hem escapçat un altre pic
 		
-
-
 #############################################################
 #						COLLIR CARTES						#
 #############################################################
-
 
 func collirCartaJugador() -> void:
 	var cartaTMP: Carta
@@ -211,14 +224,27 @@ func collirCartaJugador() -> void:
 	var num: int = valors.find(numStr)
 	var pes: int = pesos[num]
 	
+	# Si toca un AS i ens passam de 21 amb un 11, el posam a 1
+	if pes == 11:
+		if scoreJugador + pes > 21:
+			cartaTMP.set_numero("ASE")
+			pes = 1
+			
+	# Si fins ara hem emprat l'As com 11, però ens passam, el canviam per un 1
+	if scoreJugador + pes > 21:
+		for c:Carta in maJugador:			
+			if c.get_numero() == "ACE":
+				scoreJugador -= 10
+				c.set_numero("ASE")
+	
 	scoreJugador += pes
-	$scoreJugador.text = "Jugador: " + str(scoreJugador)
+	Global.scoreJugador = scoreJugador
+	#$scoreJugador.text = "Jugador: " + str(scoreJugador)
 	
 	numCartes -= 1
-	
+		
 	if scoreJugador > 21:
 		_on_passar_pressed()
-	
 	
 func collirCartaOrdinador() -> void:
 	var cartaTMP: Carta
@@ -238,17 +264,18 @@ func collirCartaOrdinador() -> void:
 	#Si toca un AS i ens passam de 21 amb un 11, el posam a 1
 	if pes == 11:
 		if scoreOrdinador + pes > 21:
+			cartaTMP.set_numero("ASE")
 			pes = 1
 	
-	#Si l'ordinador té un AS i se passa de 21, canviam el valor de 11 a 1	
-	#Això té una errada. Si hi ha més d'un AS pot ser que no ho comptem correctament
-	#TODO	
-	if scoreOrdinador > 21:
+	# Si fins ara hem emprat l'As com 11, però ens passam, el canviam per un 1	
+	if scoreOrdinador + pes > 21:
 		for c:Carta in maOrdinador:
 			if c.get_numero() == "ACE":
 				scoreOrdinador -= 10
-	
+				c.set_numero("ASE")
+				
 	scoreOrdinador += pes
+	Global.scoreOrdinador = scoreOrdinador
 	
 	numCartes -= 1
 	
@@ -264,7 +291,7 @@ func borrarCartes() -> void:
 	for c in maOrdinador:
 		c.visible = false
 		remove_child(c)
-
+		
 #################################################################
 # 						Gestió dels botons						#
 #################################################################
@@ -325,6 +352,7 @@ func _on_collir_pressed():
 		
 func _on_passar_pressed() -> void:
 	fiJugador = true
+	Global.fiJugador = true
 	$passar.disabled = true
 
 func _on_doblar_pressed():
@@ -332,7 +360,8 @@ func _on_doblar_pressed():
 		aposta += 2
 		collirCartaJugador()
 		fiJugador = true
-		$aposta.text = "Aposta: " + str(aposta) + "€"
+		Global.fiJugador = true
+		Global.aposta = aposta
 	else:
 		print("No té prou crèdit")
 	
@@ -340,10 +369,10 @@ func _on_nou_joc_pressed():
 	scoreJugador = 0
 	scoreOrdinador = 0
 	aposta = 2
-	$scoreJugador.text = "Jugador: " + str(scoreJugador)
-	$scoreOrdinador.text =  "Ordinador: " + str(scoreOrdinador)
-	$aposta.text = "Aposta: " + str(aposta) + "€"
-	$ncartes.text = "Cartes:" + str(numCartes)
+	Global.scoreJugador = 0
+	Global.scoreOrdinador = 0
+	Global.aposta = 2
+	Global.numCartes = numCartes
 	
 	#Guardam totes les cartes jugades
 	maDescarts.append_array(maJugador)
@@ -355,6 +384,7 @@ func _on_nou_joc_pressed():
 	maOrdinador = []
 	
 	fiJugador = false
+	Global.fiJugador = false
 	fiPartida = false
 	
 	$collir.disabled = false
@@ -365,4 +395,9 @@ func _on_nou_joc_pressed():
 	
 	set_process(true)
 
-
+func _on_escapsa_pressed():
+	$escapsa.visible = false
+	$collir.disabled = false
+	$passar.disabled = false
+	$doblar.disabled = false
+	set_process(true)

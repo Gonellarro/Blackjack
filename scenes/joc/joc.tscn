@@ -1,40 +1,25 @@
-[gd_scene load_steps=7 format=3 uid="uid://ya4di8snnfg1"]
+[gd_scene load_steps=6 format=3 uid="uid://ya4di8snnfg1"]
 
 [ext_resource type="Script" path="res://scenes/joc/joc.gd" id="1_sgd5x"]
 [ext_resource type="Texture2D" uid="uid://cnmco05ketrpt" path="res://assets/tapete.png" id="1_vt20p"]
+[ext_resource type="PackedScene" uid="uid://cjn1ydakmiw3v" path="res://scenes/pantalles/gui.tscn" id="2_efr2d"]
 [ext_resource type="Theme" uid="uid://cyhuytd5kxh4y" path="res://tema8bits.tres" id="3_mdkdk"]
-[ext_resource type="Texture2D" uid="uid://ds46hv56c761t" path="res://assets/moneda.png" id="3_u1vj6"]
-[ext_resource type="Theme" uid="uid://uevv2738xj4l" path="res://label8bits.tres" id="4_k3iyt"]
 [ext_resource type="AudioStream" uid="uid://km8waqjuhr2p" path="res://assets/MapleLeafRag.mp3" id="6_633ob"]
 
 [node name="Joc" type="Node2D"]
 script = ExtResource("1_sgd5x")
 metadata/_edit_vertical_guides_ = [239.0]
 
+[node name="GUI" parent="." instance=ExtResource("2_efr2d")]
+
 [node name="tapete" type="Sprite2D" parent="."]
 texture = ExtResource("1_vt20p")
 centered = false
 
-[node name="moneda" type="TextureRect" parent="."]
-offset_left = 436.0
-offset_top = 80.0
-offset_right = 452.0
-offset_bottom = 96.0
-scale = Vector2(2, 2)
-texture = ExtResource("3_u1vj6")
-
-[node name="barallar" type="Button" parent="."]
-visible = false
-offset_left = 204.0
-offset_top = 814.0
-offset_right = 278.0
-offset_bottom = 845.0
-text = "Barallar!"
-
 [node name="collir" type="Button" parent="."]
-offset_left = 38.0
+offset_left = 14.0
 offset_top = 810.0
-offset_right = 142.0
+offset_right = 118.0
 offset_bottom = 841.0
 theme = ExtResource("3_mdkdk")
 text = "Collir"
@@ -74,53 +59,11 @@ scale = Vector2(2, 2)
 theme = ExtResource("3_mdkdk")
 text = "Escapça"
 
-[node name="scoreJugador" type="Label" parent="."]
-offset_left = 291.0
-offset_top = 25.0
-offset_right = 463.0
-offset_bottom = 48.0
-theme = ExtResource("4_k3iyt")
-text = "Jugador: 0"
-horizontal_alignment = 2
-
-[node name="scoreOrdinador" type="Label" parent="."]
-offset_left = 259.0
-offset_top = 49.0
-offset_right = 463.0
-offset_bottom = 72.0
-theme = ExtResource("4_k3iyt")
-text = "Ordinador: 0"
-horizontal_alignment = 2
-
-[node name="credit" type="Label" parent="."]
-offset_left = 392.0
-offset_top = 88.0
-offset_right = 431.0
-offset_bottom = 110.0
-theme = ExtResource("4_k3iyt")
-text = "20"
-
-[node name="aposta" type="Label" parent="."]
-offset_left = 26.0
-offset_top = 49.0
-offset_right = 186.0
-offset_bottom = 72.0
-theme = ExtResource("4_k3iyt")
-text = "Aposta: 2"
-
-[node name="ncartes" type="Label" parent="."]
-offset_left = 26.0
-offset_top = 25.0
-offset_right = 202.0
-offset_bottom = 48.0
-theme = ExtResource("4_k3iyt")
-text = "Cartes: 104"
-
 [node name="MusicaFons" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_633ob")
 
-[connection signal="pressed" from="barallar" to="." method="_on_barallar_pressed"]
 [connection signal="pressed" from="collir" to="." method="_on_collir_pressed"]
 [connection signal="pressed" from="passar" to="." method="_on_passar_pressed"]
 [connection signal="pressed" from="doblar" to="." method="_on_doblar_pressed"]
 [connection signal="pressed" from="nouJoc" to="." method="_on_nou_joc_pressed"]
+[connection signal="pressed" from="escapsa" to="." method="_on_escapsa_pressed"]

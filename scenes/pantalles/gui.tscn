@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjn1ydakmiw3v"]
+
+[ext_resource type="Texture2D" uid="uid://ds46hv56c761t" path="res://assets/moneda.png" id="1_7bdhc"]
+[ext_resource type="Script" path="res://scenes/pantalles/gui.gd" id="1_8oet2"]
+[ext_resource type="Theme" uid="uid://uevv2738xj4l" path="res://label8bits.tres" id="3_6xj5h"]
+
+[node name="GUI" type="CanvasLayer"]
+script = ExtResource("1_8oet2")
+
+[node name="moneda" type="TextureRect" parent="."]
+offset_left = 436.0
+offset_top = 80.0
+offset_right = 452.0
+offset_bottom = 96.0
+scale = Vector2(2, 2)
+texture = ExtResource("1_7bdhc")
+
+[node name="scoreJugador" type="Label" parent="."]
+offset_left = 291.0
+offset_top = 25.0
+offset_right = 463.0
+offset_bottom = 48.0
+theme = ExtResource("3_6xj5h")
+text = "Jugador: 0"
+horizontal_alignment = 2
+
+[node name="scoreOrdinador" type="Label" parent="."]
+offset_left = 259.0
+offset_top = 49.0
+offset_right = 463.0
+offset_bottom = 72.0
+theme = ExtResource("3_6xj5h")
+text = "Ordinador: 0"
+horizontal_alignment = 2
+
+[node name="credit" type="Label" parent="."]
+offset_left = 392.0
+offset_top = 88.0
+offset_right = 431.0
+offset_bottom = 110.0
+theme = ExtResource("3_6xj5h")
+text = "20"
+
+[node name="aposta" type="Label" parent="."]
+offset_left = 26.0
+offset_top = 49.0
+offset_right = 186.0
+offset_bottom = 72.0
+theme = ExtResource("3_6xj5h")
+text = "Aposta: 2"
+
+[node name="ncartes" type="Label" parent="."]
+offset_left = 26.0
+offset_top = 25.0
+offset_right = 202.0
+offset_bottom = 48.0
+theme = ExtResource("3_6xj5h")
+text = "Cartes: 104"

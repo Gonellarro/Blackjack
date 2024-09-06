@@ -11,7 +11,7 @@ func _init(n: String, p: String) -> void:
 	numero = n
 	pal = p
 	imatge = load("res://assets/Cards/" + p + "_" + numero + ".png")
-	escala = Vector2 (2.5,2.5)
+	escala = Vector2 (3,3)
 	
 func _ready() -> void:
 	texture = imatge
@@ -31,4 +31,7 @@ func set_escala(s: Vector2) -> void:
 	
 func set_imatge(img: String) -> void:
 	self.imatge = load(img)
+	
+func set_numero(n: String) -> void:
+	self.numero = "ASE"
 

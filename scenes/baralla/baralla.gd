@@ -23,7 +23,7 @@ func _ready() -> void:
 	cartes.shuffle()
 
 func barallar() -> void:
-	print("Barallam")
+	#print("Barallam")
 	cartes.shuffle()
 
 func borrar() -> void:

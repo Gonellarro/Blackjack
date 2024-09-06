@@ -24,10 +24,10 @@ func _on_b_4_pressed():
 	Global.numBaralles = 4
 
 func _on_c_10_pressed():
-	Global.credits = 10
+	Global.creditsInicials = 10
 
 func _on_c_20_pressed():
-	Global.credits = 20
+	Global.creditsInicials = 20
 
 func _on_c_30_pressed():
-	Global.credits = 30
+	Global.creditsInicials = 30
