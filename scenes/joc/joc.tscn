@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://ya4di8snnfg1"]
+[gd_scene load_steps=7 format=3 uid="uid://ya4di8snnfg1"]
 
 [ext_resource type="Script" path="res://scenes/joc/joc.gd" id="1_sgd5x"]
 [ext_resource type="Texture2D" uid="uid://cnmco05ketrpt" path="res://assets/tapete.png" id="1_vt20p"]
 [ext_resource type="Theme" uid="uid://cyhuytd5kxh4y" path="res://tema8bits.tres" id="3_mdkdk"]
 [ext_resource type="Texture2D" uid="uid://ds46hv56c761t" path="res://assets/moneda.png" id="3_u1vj6"]
 [ext_resource type="Theme" uid="uid://uevv2738xj4l" path="res://label8bits.tres" id="4_k3iyt"]
+[ext_resource type="AudioStream" uid="uid://km8waqjuhr2p" path="res://assets/MapleLeafRag.mp3" id="6_633ob"]
 
 [node name="Joc" type="Node2D"]
 script = ExtResource("1_sgd5x")
@@ -114,6 +115,9 @@ offset_right = 202.0
 offset_bottom = 48.0
 theme = ExtResource("4_k3iyt")
 text = "Cartes: 104"
+
+[node name="MusicaFons" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_633ob")
 
 [connection signal="pressed" from="barallar" to="." method="_on_barallar_pressed"]
 [connection signal="pressed" from="collir" to="." method="_on_collir_pressed"]

@@ -1,5 +1,7 @@
 extends Node2D
 
+@onready var musica_fons = $MusicaFons
+
 var baralla: Baralla
 var numBaralles: int = 1
 var maJugador : Array = []
@@ -69,14 +71,11 @@ func inicialitzarVariables() -> void:
 	
 
 func _ready() -> void:
-	
+
+	musica_fons.play()	
 	inicialitzarVariables()
 	# Instanciar la baralla y afegir-la a l'escena
 	creaBaralla()
-	
-	print("Baralles: " + str(numBaralles))
-	print("Credits: " + str(credits))
-	
 	
 func _process(_delta) -> void:
 	
