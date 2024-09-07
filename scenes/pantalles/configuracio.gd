@@ -31,3 +31,13 @@ func _on_c_20_pressed():
 
 func _on_c_30_pressed():
 	Global.creditsInicials = 30
+
+func _on_a_2_pressed():
+	Global.aposta = 2
+
+func _on_a_4_pressed():
+	Global.aposta = 4
+
+func _on_a_8_pressed():
+	Global.aposta = 8
+

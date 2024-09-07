@@ -1,66 +1,82 @@
-[gd_scene load_steps=6 format=3 uid="uid://ya4di8snnfg1"]
+[gd_scene load_steps=7 format=3 uid="uid://ya4di8snnfg1"]
 
 [ext_resource type="Script" path="res://scenes/joc/joc.gd" id="1_sgd5x"]
 [ext_resource type="Texture2D" uid="uid://cnmco05ketrpt" path="res://assets/tapete.png" id="1_vt20p"]
 [ext_resource type="PackedScene" uid="uid://cjn1ydakmiw3v" path="res://scenes/pantalles/gui.tscn" id="2_efr2d"]
 [ext_resource type="Theme" uid="uid://cyhuytd5kxh4y" path="res://tema8bits.tres" id="3_mdkdk"]
+[ext_resource type="Theme" uid="uid://djm504y55dgem" path="res://label8bitsValors.tres" id="6_1pn8t"]
 [ext_resource type="AudioStream" uid="uid://km8waqjuhr2p" path="res://assets/MapleLeafRag.mp3" id="6_633ob"]
 
 [node name="Joc" type="Node2D"]
 script = ExtResource("1_sgd5x")
 metadata/_edit_vertical_guides_ = [239.0]
 
-[node name="GUI" parent="." instance=ExtResource("2_efr2d")]
-
 [node name="tapete" type="Sprite2D" parent="."]
 texture = ExtResource("1_vt20p")
 centered = false
 
 [node name="collir" type="Button" parent="."]
-offset_left = 14.0
-offset_top = 810.0
-offset_right = 118.0
-offset_bottom = 841.0
+offset_left = 7.0
+offset_top = 785.0
+offset_right = 111.0
+offset_bottom = 816.0
+scale = Vector2(2, 2)
 theme = ExtResource("3_mdkdk")
 text = "Collir"
 
 [node name="passar" type="Button" parent="."]
-offset_left = 360.0
-offset_top = 810.0
-offset_right = 419.0
-offset_bottom = 841.0
+offset_left = 262.0
+offset_top = 782.0
+offset_right = 366.0
+offset_bottom = 813.0
+scale = Vector2(2, 2)
 theme = ExtResource("3_mdkdk")
 text = "Passar"
 
 [node name="doblar" type="Button" parent="."]
-offset_left = 186.0
-offset_top = 810.0
-offset_right = 290.0
-offset_bottom = 841.0
+offset_left = 134.0
+offset_top = 713.0
+offset_right = 238.0
+offset_bottom = 744.0
+scale = Vector2(2, 2)
 theme = ExtResource("3_mdkdk")
 text = "Doblar"
 
 [node name="nouJoc" type="Button" parent="."]
 top_level = true
-offset_left = 119.0
-offset_top = 501.0
-offset_right = 239.0
-offset_bottom = 525.0
+offset_left = 70.0
+offset_top = 482.0
+offset_right = 190.0
+offset_bottom = 506.0
 scale = Vector2(2, 2)
 theme = ExtResource("3_mdkdk")
 text = "Nou Joc"
 
 [node name="escapsa" type="Button" parent="."]
-offset_left = 121.0
-offset_top = 497.0
-offset_right = 241.0
-offset_bottom = 521.0
+offset_left = 69.0
+offset_top = 483.0
+offset_right = 189.0
+offset_bottom = 507.0
 scale = Vector2(2, 2)
 theme = ExtResource("3_mdkdk")
 text = "Escapça"
 
 [node name="MusicaFons" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_633ob")
+
+[node name="GUI" parent="." instance=ExtResource("2_efr2d")]
+metadata/_edit_horizontal_guides_ = [54.0]
+metadata/_edit_vertical_guides_ = [10.0, 455.0]
+
+[node name="aposta" type="Button" parent="."]
+visible = false
+offset_left = 399.0
+offset_top = 133.0
+offset_right = 423.0
+offset_bottom = 157.0
+scale = Vector2(2, 2)
+theme = ExtResource("6_1pn8t")
+text = "2"
 
 [connection signal="pressed" from="collir" to="." method="_on_collir_pressed"]
 [connection signal="pressed" from="passar" to="." method="_on_passar_pressed"]

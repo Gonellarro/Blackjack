@@ -33,5 +33,5 @@ func set_imatge(img: String) -> void:
 	self.imatge = load(img)
 	
 func set_numero(n: String) -> void:
-	self.numero = "ASE"
+	self.numero = n
 

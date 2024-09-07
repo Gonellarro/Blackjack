@@ -1,58 +1,121 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjn1ydakmiw3v"]
+[gd_scene load_steps=5 format=3 uid="uid://cjn1ydakmiw3v"]
 
 [ext_resource type="Texture2D" uid="uid://ds46hv56c761t" path="res://assets/moneda.png" id="1_7bdhc"]
 [ext_resource type="Script" path="res://scenes/pantalles/gui.gd" id="1_8oet2"]
 [ext_resource type="Theme" uid="uid://uevv2738xj4l" path="res://label8bits.tres" id="3_6xj5h"]
+[ext_resource type="Theme" uid="uid://djm504y55dgem" path="res://label8bitsValors.tres" id="3_wcrg5"]
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource("1_8oet2")
+metadata/_edit_horizontal_guides_ = [54.0, 49.0]
+metadata/_edit_vertical_guides_ = [10.0, 455.0, 438.0]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 6.0
+offset_top = 11.0
+offset_right = 471.0
+offset_bottom = 92.0
+color = Color(0, 0.317647, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = 307.0
+offset_top = 11.0
+offset_right = 471.0
+offset_bottom = 233.0
+color = Color(0, 0.317647, 0, 1)
 
 [node name="moneda" type="TextureRect" parent="."]
-offset_left = 436.0
-offset_top = 80.0
-offset_right = 452.0
-offset_bottom = 96.0
-scale = Vector2(2, 2)
+offset_left = 316.0
+offset_top = 179.0
+offset_right = 332.0
+offset_bottom = 195.0
+scale = Vector2(3, 3)
 texture = ExtResource("1_7bdhc")
 
 [node name="scoreJugador" type="Label" parent="."]
-offset_left = 291.0
-offset_top = 25.0
-offset_right = 463.0
-offset_bottom = 48.0
-theme = ExtResource("3_6xj5h")
-text = "Jugador: 0"
+offset_left = 370.0
+offset_top = 18.0
+offset_right = 441.0
+offset_bottom = 50.0
+theme = ExtResource("3_wcrg5")
+text = "0"
 horizontal_alignment = 2
+
+[node name="scoreJugadorLabel" type="Label" parent="."]
+offset_left = 10.0
+offset_top = 19.0
+offset_right = 202.0
+offset_bottom = 51.0
+theme = ExtResource("3_6xj5h")
+text = "Jugador:"
 
 [node name="scoreOrdinador" type="Label" parent="."]
-offset_left = 259.0
-offset_top = 49.0
-offset_right = 463.0
-offset_bottom = 72.0
-theme = ExtResource("3_6xj5h")
-text = "Ordinador: 0"
+offset_left = 369.0
+offset_top = 57.0
+offset_right = 440.0
+offset_bottom = 89.0
+theme = ExtResource("3_wcrg5")
+text = "0
+"
 horizontal_alignment = 2
 
-[node name="credit" type="Label" parent="."]
-offset_left = 392.0
-offset_top = 88.0
-offset_right = 431.0
-offset_bottom = 110.0
+[node name="scoreOrdinadorLabel" type="Label" parent="."]
+offset_left = 11.0
+offset_top = 55.0
+offset_right = 331.0
+offset_bottom = 87.0
 theme = ExtResource("3_6xj5h")
+text = "Ordinador:"
+
+[node name="credit" type="Label" parent="."]
+offset_left = 346.0
+offset_top = 186.0
+offset_right = 442.0
+offset_bottom = 218.0
+theme = ExtResource("3_wcrg5")
 text = "20"
+horizontal_alignment = 2
 
 [node name="aposta" type="Label" parent="."]
-offset_left = 26.0
-offset_top = 49.0
-offset_right = 186.0
-offset_bottom = 72.0
-theme = ExtResource("3_6xj5h")
-text = "Aposta: 2"
+offset_left = 385.0
+offset_top = 141.0
+offset_right = 441.0
+offset_bottom = 173.0
+theme = ExtResource("3_wcrg5")
+text = "2"
+horizontal_alignment = 2
 
-[node name="ncartes" type="Label" parent="."]
-offset_left = 26.0
-offset_top = 25.0
-offset_right = 202.0
-offset_bottom = 48.0
+[node name="apostaLabel" type="Label" parent="."]
+offset_left = 337.0
+offset_top = 142.0
+offset_right = 401.0
+offset_bottom = 174.0
 theme = ExtResource("3_6xj5h")
-text = "Cartes: 104"
+text = "A:"
+
+[node name="jugades" type="Label" parent="."]
+offset_left = 370.0
+offset_top = 102.0
+offset_right = 441.0
+offset_bottom = 134.0
+theme = ExtResource("3_wcrg5")
+text = "1"
+horizontal_alignment = 2
+
+[node name="jugadesLabel" type="Label" parent="."]
+offset_left = 335.0
+offset_top = 101.0
+offset_right = 399.0
+offset_bottom = 133.0
+theme = ExtResource("3_6xj5h")
+text = "#:"
+
+[node name="blackJack" type="Label" parent="."]
+offset_left = 415.0
+offset_top = 267.0
+offset_right = 895.0
+offset_bottom = 299.0
+rotation = 1.57079
+theme = ExtResource("3_wcrg5")
+text = "BLACKJACK 8Bits
+"

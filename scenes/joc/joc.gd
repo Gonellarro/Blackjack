@@ -11,7 +11,7 @@ var maDescarts: Array = []
 var scoreJugador: int
 var scoreOrdinador: int
 
-var posicioJugador = Vector2(100,600)
+var posicioJugador = Vector2(100,550)
 var posicioOrdinador = Vector2(100, 300)
 
 var valors = ["2","3","4","5","6","7","8","9","10","J","Q","K","ACE","ASE"]
@@ -26,6 +26,7 @@ var credits: int
 
 # Valor de l'aposta del jugador
 var aposta: int
+var apostaInicial: int
 
 var fiDiners: bool = false
 
@@ -48,10 +49,12 @@ func inicialitzarVariables() -> void:
 	numBaralles = Global.numBaralles
 	credits = Global.creditsInicials
 	Global.credits = credits
+	Global.jugades = 1
 	scoreJugador = Global.scoreJugador
 	scoreOrdinador = Global.scoreOrdinador
 	credits = Global.credits
 	aposta = Global.aposta
+	apostaInicial = Global.aposta
 	jugades = Global.jugades
 		
 	numCartes = numBaralles * 52
@@ -63,7 +66,7 @@ func inicialitzarVariables() -> void:
 	cartaCover.set_imatge("res://assets/Cards/" + trasera)
 	cartaCoverBaralla.set_imatge("res://assets/Cards/" + trasera)
 	cartaCover.position = Vector2(100,300)
-	cartaCoverBaralla.position = Vector2(200, 80)
+	cartaCoverBaralla.position = Vector2(100, 100)
 	cartaCover.visible = false
 	cartaCover.top_level = true
 	cartaCoverBaralla.visible = false
@@ -113,12 +116,13 @@ func _process(_delta) -> void:
 			#var icona: String
 			
 			if scoreJugador == 21: 
-				$nouJoc.text = "BlackJack!"
-				credits += aposta				
+				$nouJoc.text = "BlackJack"
+				credits += aposta
 			elif scoreOrdinador > 21:
 				# Guanya el jugador
 				$nouJoc.text = "Guanyes!"
 				credits += aposta
+				print("Aposta: " + str(aposta))
 			elif (scoreJugador == scoreOrdinador) and scoreJugador < 22:
 				# Empats. Se tornen els dobers de l'aposta, per tant no feim res
 				$nouJoc.text = "Empats"
@@ -135,10 +139,13 @@ func _process(_delta) -> void:
 					
 			Global.scoreJugador = scoreJugador
 			Global.scoreOrdinador = scoreOrdinador
-			#$scoreOrdinador.text = "Ordinador: " + str(scoreOrdinador)
 			
 			Global.credits = credits
-			#$credit.text = str(credits)
+			
+			Global.jugades += 1
+			
+			aposta = apostaInicial
+			Global.aposta = apostaInicial
 
 			$nouJoc.disabled = false
 			$nouJoc.visible = true
@@ -152,8 +159,6 @@ func tornOrdinador() -> void:
 			fiPartida = true
 	else:
 		# Hem de collir els descarts, escapçar-los i tornar-los a ficar a la baralla
-		# Eliminam la carta per cobrir la baralla
-		cartaCoverBaralla.visible = false
 		collirCartaOrdinador()
 		referBaralla()
 		
@@ -162,8 +167,8 @@ func tapaCartaOrdinador() -> void:
 	add_child(cartaCover)
 	cartaCover.visible = true
 
-func eliminarCoverOrdinador() -> void:
-	cartaCover.visible = false
+#func eliminarCoverOrdinador() -> void:
+	#cartaCover.visible = false
 
 
 #############################################################
@@ -179,14 +184,20 @@ func creaBaralla() -> void:
 	cartaCoverBaralla.visible = true
 
 func referBaralla() -> void:
+		# Eliminam la cover de la baralla
+		cartaCoverBaralla.visible = false
+		
 		$escapsa.visible = true
 		$escapsa.disabled = false
 		$collir.disabled = true
 		$passar.disabled = true
 		$doblar.disabled = true
 		set_process(false)
+		#await get_tree().create_timer(1).timeout
 		# Guardam quantes cartes hi ha als descarts
 		numCartes = maDescarts.size()
+		# Llevam tots els ASE que hem posat
+		revisaASE()
 		#Cream la baralla amb les cartes descartades
 		baralla.renovarCartes(maDescarts)
 		# Escapçam totes les cartes
@@ -195,16 +206,14 @@ func referBaralla() -> void:
 		for c in baralla.get_cartes():
 			c.visible = true
 		
-		# Posam la carta per cobrir la baralla
-		cartaCoverBaralla.visible = true
-		
 		#Netejam les cartes descartades
 		maDescarts.clear()
 		
-		cartaCoverBaralla.visible = true
-		
-		# Mostram el missatge que ja hem escapçat un altre pic
-		
+func revisaASE() -> void:
+	for c:Carta in maDescarts:
+		if c.get_numero() == "ASE":
+			c.set_numero("ACE")	
+	
 #############################################################
 #						COLLIR CARTES						#
 #############################################################
@@ -315,37 +324,34 @@ func _on_collir_pressed():
 					collirCartaOrdinador()
 					collirCartaJugador()
 					collirCartaOrdinador()
-					# Eliminam la cover de la baralla
-					cartaCoverBaralla.visible = false
+				
 					referBaralla()
 				3:
 					collirCartaJugador()
 					collirCartaOrdinador()
 					collirCartaJugador()
-					cartaCoverBaralla.visible = false
+
 					referBaralla()					
 					collirCartaOrdinador()
 				2:
 					collirCartaJugador()
 					collirCartaOrdinador()
-					# Eliminam la cover de la baralla
-					cartaCoverBaralla.visible = false
+
 					referBaralla()
 					collirCartaJugador()
 					collirCartaOrdinador()
 				1:
 					collirCartaJugador()
-					# Eliminam la cover de la baralla
-					cartaCoverBaralla.visible = false
+
 					referBaralla()
 					collirCartaOrdinador()
 					collirCartaJugador()
 					collirCartaOrdinador()
+					
 			cartaCover.visible = true
 		elif numCartes == 1:
 			collirCartaJugador()
-			# Eliminam la cover de la baralla
-			cartaCoverBaralla.visible = false		
+
 			referBaralla()
 		else:
 			collirCartaJugador()
@@ -356,8 +362,8 @@ func _on_passar_pressed() -> void:
 	$passar.disabled = true
 
 func _on_doblar_pressed():
-	if credits - aposta > 0:
-		aposta += 2
+	if credits - (2*aposta) > 0:
+		aposta = 2 * aposta
 		collirCartaJugador()
 		fiJugador = true
 		Global.fiJugador = true
@@ -368,10 +374,10 @@ func _on_doblar_pressed():
 func _on_nou_joc_pressed():
 	scoreJugador = 0
 	scoreOrdinador = 0
-	aposta = 2
+	aposta = apostaInicial
 	Global.scoreJugador = 0
 	Global.scoreOrdinador = 0
-	Global.aposta = 2
+	Global.aposta = apostaInicial
 	Global.numCartes = numCartes
 	
 	#Guardam totes les cartes jugades
@@ -395,9 +401,12 @@ func _on_nou_joc_pressed():
 	
 	set_process(true)
 
+
 func _on_escapsa_pressed():
 	$escapsa.visible = false
 	$collir.disabled = false
 	$passar.disabled = false
 	$doblar.disabled = false
+	if !cartaCoverBaralla.visible:
+		cartaCoverBaralla.visible = true
 	set_process(true)
