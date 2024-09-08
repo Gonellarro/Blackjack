@@ -56,6 +56,7 @@ func inicialitzarVariables() -> void:
 	aposta = Global.aposta
 	apostaInicial = Global.aposta
 	jugades = Global.jugades
+	Global.maxim = credits
 		
 	numCartes = numBaralles * 52
 	Global.numCartes = numCartes
@@ -424,3 +425,7 @@ func _on_escapsa_pressed():
 	if !cartaCoverBaralla.visible:
 		cartaCoverBaralla.visible = true
 	set_process(true)
+
+func _on_sortir_pressed():
+	credits = 0 
+	_on_nou_joc_pressed()
