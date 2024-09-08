@@ -8,6 +8,7 @@ func _ready():
 	$credit.text = str(Global.credits)
 	$aposta.text = str(Global.aposta)
 	$jugades.text = str(Global.jugades)
+	$numBJ.text = str(Global.numBlackJacks)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -20,6 +21,7 @@ func _process(delta):
 	$credit.text = str(Global.credits)
 	$aposta.text = str(Global.aposta)
 	$jugades.text = str(Global.jugades)
+	$numBJ.text = str(Global.numBlackJacks)
 
 
 

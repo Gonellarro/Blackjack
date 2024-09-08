@@ -9,6 +9,10 @@ var numCartes: int
 var aposta: int
 var jugades: int
 var fiJugador: bool
+var numBlackJacks: int
+var numJugadesGuanyades: int
+var numJugadesEmpats: int
+var maxim: int
 
 
 func _ready():
@@ -21,4 +25,8 @@ func _ready():
 	jugades = 0
 	numCartes = 52 * numBaralles
 	fiJugador = false
+	numBlackJacks = 0
+	numJugadesGuanyades = 0
+	numJugadesEmpats = 0
+	maxim = 0
 

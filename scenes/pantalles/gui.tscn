@@ -21,14 +21,14 @@ color = Color(0, 0.317647, 0, 1)
 offset_left = 307.0
 offset_top = 11.0
 offset_right = 471.0
-offset_bottom = 233.0
+offset_bottom = 310.0
 color = Color(0, 0.317647, 0, 1)
 
 [node name="moneda" type="TextureRect" parent="."]
 offset_left = 316.0
-offset_top = 179.0
+offset_top = 242.0
 offset_right = 332.0
-offset_bottom = 195.0
+offset_bottom = 258.0
 scale = Vector2(3, 3)
 texture = ExtResource("1_7bdhc")
 
@@ -69,9 +69,9 @@ text = "Ordinador:"
 
 [node name="credit" type="Label" parent="."]
 offset_left = 346.0
-offset_top = 186.0
+offset_top = 249.0
 offset_right = 442.0
-offset_bottom = 218.0
+offset_bottom = 281.0
 theme = ExtResource("3_wcrg5")
 text = "20"
 horizontal_alignment = 2
@@ -86,9 +86,9 @@ text = "2"
 horizontal_alignment = 2
 
 [node name="apostaLabel" type="Label" parent="."]
-offset_left = 337.0
+offset_left = 317.0
 offset_top = 142.0
-offset_right = 401.0
+offset_right = 381.0
 offset_bottom = 174.0
 theme = ExtResource("3_6xj5h")
 text = "A:"
@@ -103,14 +103,15 @@ text = "1"
 horizontal_alignment = 2
 
 [node name="jugadesLabel" type="Label" parent="."]
-offset_left = 335.0
+offset_left = 317.0
 offset_top = 101.0
-offset_right = 399.0
+offset_right = 381.0
 offset_bottom = 133.0
 theme = ExtResource("3_6xj5h")
 text = "#:"
 
 [node name="blackJack" type="Label" parent="."]
+visible = false
 offset_left = 415.0
 offset_top = 267.0
 offset_right = 895.0
@@ -119,3 +120,19 @@ rotation = 1.57079
 theme = ExtResource("3_wcrg5")
 text = "BLACKJACK 8Bits
 "
+
+[node name="numBJ" type="Label" parent="."]
+offset_left = 409.0
+offset_top = 191.0
+offset_right = 449.0
+offset_bottom = 223.0
+theme = ExtResource("3_wcrg5")
+text = "0"
+
+[node name="numBJLabel" type="Label" parent="."]
+offset_left = 317.0
+offset_top = 191.0
+offset_right = 445.0
+offset_bottom = 223.0
+theme = ExtResource("3_6xj5h")
+text = "BJ:"

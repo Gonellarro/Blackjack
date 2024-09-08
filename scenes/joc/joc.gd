@@ -118,24 +118,29 @@ func _process(_delta) -> void:
 			if scoreJugador == 21: 
 				$nouJoc.text = "BlackJack"
 				credits += aposta
+				Global.numBlackJacks += 1
+				Global.numJugadesGuanyades += 1
 			elif scoreOrdinador > 21:
 				# Guanya el jugador
 				$nouJoc.text = "Guanyes!"
 				credits += aposta
-				print("Aposta: " + str(aposta))
+				Global.numJugadesGuanyades += 1
 			elif (scoreJugador == scoreOrdinador) and scoreJugador < 22:
 				# Empats. Se tornen els dobers de l'aposta, per tant no feim res
 				$nouJoc.text = "Empats"
+				Global.numJugadesEmpats += 1
 			elif (scoreJugador > scoreOrdinador) and scoreJugador < 22:
 				# Guanya el jugador
 				$nouJoc.text = "Guanyes!"
 				credits += aposta
+				Global.numJugadesGuanyades += 1
 			else:
 				# Guanya l'ordinador
 				$nouJoc.text = "Perds..."
 				credits -= aposta
 				if credits < 1:
-					get_tree().change_scene_to_file("res://scenes/pantalles/game_over.tscn")
+					$nouJoc.text = "Game Over"
+					
 					
 			Global.scoreJugador = scoreJugador
 			Global.scoreOrdinador = scoreOrdinador
@@ -149,6 +154,11 @@ func _process(_delta) -> void:
 
 			$nouJoc.disabled = false
 			$nouJoc.visible = true
+			
+			# Guardam els màxims guanys
+			if credits > Global.maxim:
+				Global.maxim = credits
+				
 			set_process(false)
 
 func tornOrdinador() -> void:
@@ -372,34 +382,37 @@ func _on_doblar_pressed():
 		print("No té prou crèdit")
 	
 func _on_nou_joc_pressed():
-	scoreJugador = 0
-	scoreOrdinador = 0
-	aposta = apostaInicial
-	Global.scoreJugador = 0
-	Global.scoreOrdinador = 0
-	Global.aposta = apostaInicial
-	Global.numCartes = numCartes
-	
-	#Guardam totes les cartes jugades
-	maDescarts.append_array(maJugador)
-	maDescarts.append_array(maOrdinador)
-	
-	borrarCartes()
-	
-	maJugador = []
-	maOrdinador = []
-	
-	fiJugador = false
-	Global.fiJugador = false
-	fiPartida = false
-	
-	$collir.disabled = false
-	$passar.disabled = false
-	$doblar.disabled = false
-	$nouJoc.disabled = true
-	$nouJoc.visible = false
-	
-	set_process(true)
+	if credits > 0:
+		scoreJugador = 0
+		scoreOrdinador = 0
+		aposta = apostaInicial
+		Global.scoreJugador = 0
+		Global.scoreOrdinador = 0
+		Global.aposta = apostaInicial
+		Global.numCartes = numCartes
+		
+		#Guardam totes les cartes jugades
+		maDescarts.append_array(maJugador)
+		maDescarts.append_array(maOrdinador)
+		
+		borrarCartes()
+		
+		maJugador = []
+		maOrdinador = []
+		
+		fiJugador = false
+		Global.fiJugador = false
+		fiPartida = false
+		
+		$collir.disabled = false
+		$passar.disabled = false
+		$doblar.disabled = false
+		$nouJoc.disabled = true
+		$nouJoc.visible = false
+		
+		set_process(true)
+	else:
+		get_tree().change_scene_to_file("res://scenes/pantalles/game_over.tscn")
 
 
 func _on_escapsa_pressed():
