@@ -382,38 +382,39 @@ func _on_doblar_pressed():
 		print("No té prou crèdit")
 	
 func _on_nou_joc_pressed():
-	if credits > 0:
-		scoreJugador = 0
-		scoreOrdinador = 0
-		aposta = apostaInicial
-		Global.scoreJugador = 0
-		Global.scoreOrdinador = 0
-		Global.aposta = apostaInicial
-		Global.numCartes = numCartes
-		
-		#Guardam totes les cartes jugades
-		maDescarts.append_array(maJugador)
-		maDescarts.append_array(maOrdinador)
-		
-		borrarCartes()
-		
-		maJugador = []
-		maOrdinador = []
-		
-		fiJugador = false
-		Global.fiJugador = false
-		fiPartida = false
-		
-		$collir.disabled = false
-		$passar.disabled = false
-		$doblar.disabled = false
-		$nouJoc.disabled = true
-		$nouJoc.visible = false
-		
-		set_process(true)
-	else:
-		get_tree().change_scene_to_file("res://scenes/pantalles/game_over.tscn")
+	
+	scoreJugador = 0
+	scoreOrdinador = 0
+	aposta = apostaInicial
+	Global.scoreJugador = 0
+	Global.scoreOrdinador = 0
+	Global.aposta = apostaInicial
 
+	Global.numCartes = numCartes
+	
+	#Guardam totes les cartes jugades
+	maDescarts.append_array(maJugador)
+	maDescarts.append_array(maOrdinador)
+	
+	borrarCartes()
+	
+	maJugador = []
+	maOrdinador = []
+	
+	fiJugador = false
+	Global.fiJugador = false
+	fiPartida = false
+	
+	$collir.disabled = false
+	$passar.disabled = false
+	$doblar.disabled = false
+	$nouJoc.disabled = true
+	$nouJoc.visible = false
+		
+	set_process(true)
+	
+	if credits < 1:
+		get_tree().change_scene_to_file("res://scenes/pantalles/game_over.tscn")
 
 func _on_escapsa_pressed():
 	$escapsa.visible = false
