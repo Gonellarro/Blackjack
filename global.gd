@@ -13,6 +13,7 @@ var numBlackJacks: int
 var numJugadesGuanyades: int
 var numJugadesEmpats: int
 var maxim: int
+var creditsHist: Array 
 
 
 func _ready():
@@ -29,4 +30,6 @@ func _ready():
 	numJugadesGuanyades = 0
 	numJugadesEmpats = 0
 	maxim = 0
+	creditsHist = []
+	
 

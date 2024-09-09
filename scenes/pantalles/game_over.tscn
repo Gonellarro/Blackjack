@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://buk5as8bbqg2r"]
+[gd_scene load_steps=7 format=3 uid="uid://buk5as8bbqg2r"]
 
 [ext_resource type="Script" path="res://scenes/pantalles/game_over.gd" id="1_au1ik"]
 [ext_resource type="Texture2D" uid="uid://by1yifnysyy8x" path="res://assets/fonsGameOver.png" id="1_e0j7p"]
 [ext_resource type="Theme" uid="uid://cyhuytd5kxh4y" path="res://tema8bits.tres" id="3_3fv20"]
 [ext_resource type="Theme" uid="uid://djm504y55dgem" path="res://label8bitsValors.tres" id="4_k4f61"]
 [ext_resource type="Theme" uid="uid://uevv2738xj4l" path="res://label8bits.tres" id="5_i6t8b"]
+[ext_resource type="AudioStream" uid="uid://da1jy70pfbu5n" path="res://assets/TheEntertainer.mp3" id="6_nw7np"]
 
 [node name="GameOver" type="Control"]
 layout_mode = 3
@@ -26,9 +27,9 @@ expand_mode = 1
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
 offset_left = 13.0
-offset_top = 455.0
+offset_top = 526.0
 offset_right = 452.0
-offset_bottom = 734.0
+offset_bottom = 805.0
 color = Color(0, 0.294118, 0, 0.819608)
 
 [node name="Reiniciar" type="Button" parent="."]
@@ -55,56 +56,72 @@ text = "Menu"
 [node name="jugades" type="Label" parent="."]
 layout_mode = 0
 offset_left = 28.0
-offset_top = 465.0
-offset_right = 156.0
-offset_bottom = 497.0
+offset_top = 536.0
+offset_right = 348.0
+offset_bottom = 568.0
 theme = ExtResource("4_k4f61")
 text = "Jugades: 1"
 
 [node name="jugadesGuanyades" type="Label" parent="."]
 layout_mode = 0
 offset_left = 25.0
-offset_top = 507.0
+offset_top = 578.0
 offset_right = 409.0
-offset_bottom = 539.0
+offset_bottom = 610.0
 theme = ExtResource("5_i6t8b")
 text = "Guanyades: 1"
 
 [node name="jugadesEmpatades" type="Label" parent="."]
 layout_mode = 0
 offset_left = 28.0
-offset_top = 547.0
+offset_top = 618.0
 offset_right = 412.0
-offset_bottom = 579.0
+offset_bottom = 650.0
 theme = ExtResource("4_k4f61")
 text = "Empatades: 1"
 
 [node name="JugadesPerdudes" type="Label" parent="."]
 layout_mode = 0
 offset_left = 30.0
-offset_top = 591.0
+offset_top = 662.0
 offset_right = 382.0
-offset_bottom = 623.0
+offset_bottom = 694.0
 theme = ExtResource("5_i6t8b")
 text = "Perdudes: 1"
 
 [node name="blackjack" type="Label" parent="."]
 layout_mode = 0
 offset_left = 32.0
-offset_top = 631.0
+offset_top = 702.0
 offset_right = 448.0
-offset_bottom = 663.0
+offset_bottom = 734.0
 theme = ExtResource("4_k4f61")
 text = "BlackJacjs: 1"
 
 [node name="guanys" type="Label" parent="."]
 layout_mode = 0
 offset_left = 29.0
-offset_top = 673.0
+offset_top = 744.0
 offset_right = 445.0
-offset_bottom = 705.0
+offset_bottom = 776.0
 theme = ExtResource("5_i6t8b")
 text = "Màx creds: 10"
 
+[node name="MusicaFons" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_nw7np")
+autoplay = true
+
+[node name="grafiques" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 91.0
+offset_top = 450.0
+offset_right = 243.0
+offset_bottom = 474.0
+scale = Vector2(2, 2)
+theme = ExtResource("3_3fv20")
+text = "Gràfiques"
+
 [connection signal="pressed" from="Reiniciar" to="." method="_on_reiniciar_pressed"]
 [connection signal="pressed" from="Menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="grafiques" to="." method="_on_grafiques_pressed"]

@@ -49,7 +49,7 @@ func inicialitzarVariables() -> void:
 	numBaralles = Global.numBaralles
 	credits = Global.creditsInicials
 	Global.credits = credits
-	Global.jugades = 1
+	Global.jugades = 0
 	scoreJugador = Global.scoreJugador
 	scoreOrdinador = Global.scoreOrdinador
 	credits = Global.credits
@@ -57,6 +57,7 @@ func inicialitzarVariables() -> void:
 	apostaInicial = Global.aposta
 	jugades = Global.jugades
 	Global.maxim = credits
+	Global.numBlackJacks = 0
 		
 	numCartes = numBaralles * 52
 	Global.numCartes = numCartes
@@ -106,6 +107,9 @@ func _process(_delta) -> void:
 		$collir.disabled = true
 		$passar.disabled = true
 		$doblar.disabled = true
+		
+		# Emmagatzemam els diners que té en el moment
+		Global.creditsHist.append(credits)
 		
 		if scoreOrdinador > 16:
 			fiPartida = true

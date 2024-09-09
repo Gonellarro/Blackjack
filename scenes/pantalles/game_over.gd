@@ -17,7 +17,16 @@ func _process(_delta):
 	$guanys.text = "Màx creds: " + str(Global.maxim)
 	
 func _on_reiniciar_pressed():
+	Global.jugades = 0
+	Global.numJugadesGuanyades = 0
+	Global.numJugadesEmpats = 0
+	Global.numBlackJacks = 0 
+	Global.maxim = 0
+	
 	get_tree().change_scene_to_file("res://scenes/joc/joc.tscn")
 
 func _on_menu_pressed():
 	get_tree().change_scene_to_file("res://scenes/pantalles/menu.tscn")
+	
+func _on_grafiques_pressed():
+	get_tree().change_scene_to_file("res://scenes/pantalles/grafica.tscn")

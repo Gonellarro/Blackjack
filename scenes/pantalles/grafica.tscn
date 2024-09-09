@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6ts6ot13bxaf"]
+
+[ext_resource type="Script" path="res://scenes/pantalles/grafica.gd" id="1_giybh"]
+[ext_resource type="Texture2D" uid="uid://cnmco05ketrpt" path="res://assets/tapete.png" id="2_w3tmy"]
+
+[node name="grafica" type="Node2D"]
+script = ExtResource("1_giybh")
+
+[node name="Fons" type="TextureRect" parent="."]
+offset_right = 479.0
+offset_bottom = 853.0
+texture = ExtResource("2_w3tmy")
+expand_mode = 1
