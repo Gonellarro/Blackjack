@@ -14,7 +14,7 @@ var numJugadesGuanyades: int
 var numJugadesEmpats: int
 var maxim: int
 var creditsHist: Array 
-
+var blackJackHist: Array
 
 func _ready():
 	numBaralles = 1
@@ -31,5 +31,7 @@ func _ready():
 	numJugadesEmpats = 0
 	maxim = 0
 	creditsHist = []
+	blackJackHist = []
+	
 	
 

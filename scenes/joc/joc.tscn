@@ -68,16 +68,6 @@ stream = ExtResource("6_633ob")
 metadata/_edit_horizontal_guides_ = [54.0]
 metadata/_edit_vertical_guides_ = [10.0, 455.0]
 
-[node name="aposta" type="Button" parent="."]
-visible = false
-offset_left = 399.0
-offset_top = 133.0
-offset_right = 423.0
-offset_bottom = 157.0
-scale = Vector2(2, 2)
-theme = ExtResource("6_1pn8t")
-text = "2"
-
 [node name="sortir" type="Button" parent="."]
 offset_left = 15.0
 offset_top = 102.0

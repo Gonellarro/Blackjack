@@ -25,6 +25,7 @@ texture = ExtResource("1_e0j7p")
 expand_mode = 1
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 13.0
 offset_top = 526.0
@@ -54,6 +55,7 @@ theme = ExtResource("3_3fv20")
 text = "Menu"
 
 [node name="jugades" type="Label" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 28.0
 offset_top = 536.0
@@ -63,6 +65,7 @@ theme = ExtResource("4_k4f61")
 text = "Jugades: 1"
 
 [node name="jugadesGuanyades" type="Label" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 25.0
 offset_top = 578.0
@@ -72,6 +75,7 @@ theme = ExtResource("5_i6t8b")
 text = "Guanyades: 1"
 
 [node name="jugadesEmpatades" type="Label" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 28.0
 offset_top = 618.0
@@ -81,6 +85,7 @@ theme = ExtResource("4_k4f61")
 text = "Empatades: 1"
 
 [node name="JugadesPerdudes" type="Label" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 30.0
 offset_top = 662.0
@@ -90,6 +95,7 @@ theme = ExtResource("5_i6t8b")
 text = "Perdudes: 1"
 
 [node name="blackjack" type="Label" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 32.0
 offset_top = 702.0
@@ -99,6 +105,7 @@ theme = ExtResource("4_k4f61")
 text = "BlackJacjs: 1"
 
 [node name="guanys" type="Label" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 29.0
 offset_top = 744.0
@@ -112,7 +119,6 @@ stream = ExtResource("6_nw7np")
 autoplay = true
 
 [node name="grafiques" type="Button" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 91.0
 offset_top = 450.0

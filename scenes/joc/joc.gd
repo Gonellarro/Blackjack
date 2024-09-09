@@ -108,9 +108,6 @@ func _process(_delta) -> void:
 		$passar.disabled = true
 		$doblar.disabled = true
 		
-		# Emmagatzemam els diners que té en el moment
-		Global.creditsHist.append(credits)
-		
 		if scoreOrdinador > 16:
 			fiPartida = true
 			
@@ -118,13 +115,14 @@ func _process(_delta) -> void:
 			tornOrdinador()
 		
 		if fiPartida:
-			#var icona: String
-			
+			Global.blackJackHist.push_back("0")
 			if scoreJugador == 21: 
 				$nouJoc.text = "BlackJack"
 				credits += aposta
 				Global.numBlackJacks += 1
 				Global.numJugadesGuanyades += 1
+				Global.blackJackHist.pop_back()
+				Global.blackJackHist.push_back("1")
 			elif scoreOrdinador > 21:
 				# Guanya el jugador
 				$nouJoc.text = "Guanyes!"
@@ -152,6 +150,8 @@ func _process(_delta) -> void:
 			
 			Global.credits = credits
 			
+			Global.creditsHist.push_back(credits)
+			
 			Global.jugades += 1
 			
 			aposta = apostaInicial
@@ -163,6 +163,8 @@ func _process(_delta) -> void:
 			# Guardam els màxims guanys
 			if credits > Global.maxim:
 				Global.maxim = credits
+			
+			fiPartida = false
 				
 			set_process(false)
 
@@ -191,7 +193,7 @@ func tapaCartaOrdinador() -> void:
 #############################################################
 
 func creaBaralla() -> void:
-	var cartes: Array = []
+
 	baralla = Baralla.new(numBaralles)	
 	# Mostram la baralla
 	add_child(baralla)
@@ -370,9 +372,10 @@ func _on_collir_pressed():
 			referBaralla()
 		else:
 			collirCartaJugador()
-		
+			
 func _on_passar_pressed() -> void:
 	fiJugador = true
+	aposta = Global.aposta
 	Global.fiJugador = true
 	$passar.disabled = true
 

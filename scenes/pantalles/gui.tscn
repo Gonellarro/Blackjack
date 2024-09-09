@@ -136,3 +136,14 @@ offset_right = 445.0
 offset_bottom = 223.0
 theme = ExtResource("3_6xj5h")
 text = "BJ:"
+
+[node name="aposta2" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 153.0
+offset_right = 40.0
+offset_bottom = 177.0
+scale = Vector2(2, 2)
+theme = ExtResource("3_wcrg5")
+text = "A"
+
+[connection signal="pressed" from="aposta2" to="." method="_on_aposta_pressed"]
