@@ -210,7 +210,7 @@ func referBaralla() -> void:
 		$passar.disabled = true
 		$doblar.disabled = true
 		set_process(false)
-		#await get_tree().create_timer(1).timeout
+
 		# Guardam quantes cartes hi ha als descarts
 		numCartes = maDescarts.size()
 		# Llevam tots els ASE que hem posat
@@ -265,10 +265,9 @@ func collirCartaJugador() -> void:
 	
 	scoreJugador += pes
 	Global.scoreJugador = scoreJugador
-	#$scoreJugador.text = "Jugador: " + str(scoreJugador)
 	
 	numCartes -= 1
-		
+	
 	if scoreJugador > 21:
 		_on_passar_pressed()
 	

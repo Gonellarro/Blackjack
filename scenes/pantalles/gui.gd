@@ -30,9 +30,13 @@ func _process(_delta):
 		controlApostes = false
 	
 func _on_aposta_pressed():
+	# Si apretam per canviar l'aposta i és al principi
 	if !controlApostes:
+		# Les apostes van de 2, 4 i 8
 		var apostes = [2,4,8]
 		var index: int
+		# Miram quin és l'índex de l'aposta que hem fet i triam la següent o 
+		# la primera si hem arribat al final
 		index = apostes.find(Global.aposta)
 		if index + 1 < apostes.size():
 			Global.aposta = apostes[index+1]
