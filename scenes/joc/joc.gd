@@ -116,9 +116,9 @@ func _process(_delta) -> void:
 		
 		if fiPartida:
 			Global.blackJackHist.push_back("0")
-			if scoreJugador == 21: 
+			if scoreJugador == 21 and maJugador.size() == 2: 
 				$nouJoc.text = "BlackJack"
-				credits += aposta
+				credits += int((aposta*3)/2)
 				Global.numBlackJacks += 1
 				Global.numJugadesGuanyades += 1
 				Global.blackJackHist.pop_back()
